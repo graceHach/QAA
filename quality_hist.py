@@ -9,11 +9,11 @@ import gzip
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f_in', help="input fastq filename",type=str, default="mini.fq",)
+    parser.add_argument('-f_in', help="input fastq filename",type=str, default="mini.fq")
     parser.add_argument('-length', help="length of reads in f_in",type=int, default=101)
     parser.add_argument('-title', help="plot title",type=str,default="hello!")
     parser.add_argument('-color', help="color of line in plot",type=str,default="navy")
-    parser.add_argument('-f_out', help="Output filename. .png will be apended",type=str, default="",)
+    parser.add_argument('-f_out', help="Output filename. .png will be apended",type=str)
 
     # ADD ARGUMENT IF NOT USING PHRED + 33
     return parser.parse_args()
@@ -46,8 +46,9 @@ args = parse_args()
 means = get_mean(args.f_in, args.length)
 
 fig, ax = plt.subplots()
-ax.plot(range(1,args.length+1,1),means,color='navy',label='Mean')
+ax.plot(range(1,args.length+1,1),means,color=args.color,label='Mean')
 ax.set_title(args.title)
+ax.set_ylim([29, 41]) # So plots share a y axis and can be easily compared
 ax.set_ylabel("Phred quality score")
 ax.set_xlabel("Base position")
 

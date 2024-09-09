@@ -10,6 +10,7 @@
 
 set -e
 
+# Potentially enclose multiple commands in {} and termiante each with ; 
 /usr/bin/time -v python quality_hist.py -f_in "/projects/bgmp/shared/2017_sequencing/demultiplexed/15_3C_mbnl_S11_L008_R1_001.fastq.gz" \
 -title "15_3C_mbnl R1" \
 -color "navy" \
